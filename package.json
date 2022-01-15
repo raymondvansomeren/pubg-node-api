@@ -1,6 +1,6 @@
 {
   "name": "pubg-node-api",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "A package that makes interaction with the pubg api easier",
   "main": "index.js",
   "scripts": {
