@@ -1,19 +1,21 @@
-const Player = require('./player');
+const Matches = require('./matches');
 const Players = require('./players');
 
 class API
 {
+    #config;
+
     constructor(token, options = {
         default_shard: 'steam',
     })
     {
-        this.config = {};
+        this.#config = {};
 
         this.set_api_token(token);
 
-        this.config.api_url = 'https://api.pubg.com';
-        this.config.default_shard = options.default_shard || 'steam';
-        this.config.routes = {
+        this.#config.api_url = 'https://api.pubg.com';
+        this.#config.default_shard = options.default_shard || 'steam';
+        this.#config.routes = {
             matches: 'matches',
             players: 'players',
             samples: 'samples',
@@ -24,18 +26,11 @@ class API
     // TODO add check to see if the token was correct
     set_api_token(token)
     {
-        this.config.token = token;
+        this.#config.token = token;
 
-        this.config.request_headers = {
-            'Authorization': `Bearer ${this.config.token}`,
-            'Accept': 'application/vnd.api+json',
-        };
-
-        this.players = new Players(this.config);
+        this.players = new Players(this.#config);
+        this.matches = new Matches(this.#config);
     }
 }
 
-module.exports = {
-    API,
-    Player,
-};
+module.exports = API;
