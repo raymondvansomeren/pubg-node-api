@@ -17,13 +17,18 @@ class Players
 
     async get_player_by_name(player)
     {
-        // console.log(this.config.request_headers_);
         const response = await axios({
             method: 'GET',
             url: `${this.config.api_url}/shards/${this.config.default_shard}/${this.config.routes.players}?filter${this.config.filters.name_filter}=${player}`,
             headers: this.config.request_headers,
-        });
-        // console.log(response.data.data[0]);
+        })
+            .catch((e) =>
+            {
+                if (e.response.status === 404)
+                {
+                    return undefined;
+                }
+            });
         return new Player(response?.data?.data[0]);
     }
 
@@ -33,8 +38,14 @@ class Players
             method: 'GET',
             url: `${this.config.api_url}/shards/${this.config.default_shard}/${this.config.routes.players}/${player}`,
             headers: this.config.request_headers,
-        });
-        // console.log(response.data.data);
+        })
+            .catch((e) =>
+            {
+                if (e.response.status === 404)
+                {
+                    return undefined;
+                }
+            });
         return new Player(response?.data?.data);
     }
 }
