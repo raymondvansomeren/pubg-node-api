@@ -48,7 +48,9 @@ class Player
         // TODO limit the amount of matches retrieved (maybe to 10 or something)
         for (let i = 0; i < this.#matches_by_ids?.length; i++)
         {
-            promises.push({ index: i, match: matches_class.get_match_by_id(this.#matches_by_ids[i].id) });
+            // TODO make sure the order is right
+            // promises.push({ index: i, match: matches_class.get_match_by_id(this.#matches_by_ids[i].id) });
+            promises.push(matches_class.get_match_by_id(this.#matches_by_ids[i].id));
         }
 
         this.matches = Promise.all(promises);
