@@ -34,7 +34,7 @@ class Matches
                     return undefined;
                 }
             });
-        return new Match(response?.data?.data);
+        return new Match(response?.data, this.#config);
     }
 }
 
