@@ -13,7 +13,11 @@ class Player
 
         this.raw = player_obj;
 
-        this.#matches_by_ids = this.raw?.relationships?.matches?.data;
+        this.#matches_by_ids = this.raw?.data?.relationships?.matches?.data;
+
+        this.type = this.raw.data.type;
+        this.id = this.raw.data.id;
+        this.name = this.raw.data.attributes.name;
 
         this.refresh_matches();
 

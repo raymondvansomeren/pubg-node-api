@@ -21,44 +21,40 @@ class Players
 
     async get_player_by_name(player)
     {
-        const response = await axios({
+        let rtn = {};
+        await axios({
             method: 'GET',
             url: `${this.#config.api_url}/shards/${this.#config.default_shard}/${this.#config.routes.players}?filter${this.#config.filters.name_filter}=${player}`,
             headers: this.headers,
         })
+            .then((r) =>
+            {
+                rtn = new Player(r?.data, this.#config);
+            })
             .catch((e) =>
             {
-                if (e.response.status === 404)
-                {
-                    return undefined;
-                }
-                else
-                {
-                    return undefined;
-                }
+                throw e;
             });
-        return new Player(response?.data?.data[0], this.#config);
+        return rtn;
     }
 
     async get_player_by_id(player)
     {
-        const response = await axios({
+        let rtn = {};
+        await axios({
             method: 'GET',
             url: `${this.#config.api_url}/shards/${this.#config.default_shard}/${this.#config.routes.players}/${player}`,
             headers: this.headers,
         })
+            .then((r) =>
+            {
+                rtn = new Player(r?.data, this.#config);
+            })
             .catch((e) =>
             {
-                if (e.response.status === 404)
-                {
-                    return undefined;
-                }
-                else
-                {
-                    return undefined;
-                }
+                throw e;
             });
-        return new Player(response?.data?.data, this.#config);
+        return rtn;
     }
 }
 
