@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const Matches = require('./matches');
 const Players = require('./players');
 
@@ -30,6 +32,17 @@ class API
 
         this.players = new Players(this.#config);
         this.matches = new Matches(this.#config);
+    }
+
+    get_status()
+    {
+        return axios({
+            method: 'GET',
+            url: `${this.#config.api_url}/status`,
+            headers: {
+                'Accept': 'application/vnd.api+json',
+            },
+        });
     }
 }
 
