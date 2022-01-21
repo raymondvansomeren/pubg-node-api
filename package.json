@@ -4,7 +4,7 @@
   "description": "A package that makes interaction with the pubg api easier",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "mocha ./test/test.js"
   },
   "repository": {
     "type": "git",
