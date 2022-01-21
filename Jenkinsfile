@@ -29,7 +29,7 @@ pipeline {
         {
             steps
             {
-                discordSend description: "PUBG node api NPM package build", footer: "https://www.npmjs.com/package/pubg-node-api", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/934100516647092276/JINhtmnCjttAISMlpM8bli2f7uaJ4BfF3uzHRbYzCc87MJ66Lt7_bxSP8y111WIA-1So"
+                discordSend title: "build: " + currentBuild.currentResult, description: "PUBG node api NPM package build", footer: "https://www.npmjs.com/package/pubg-node-api", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/934100516647092276/JINhtmnCjttAISMlpM8bli2f7uaJ4BfF3uzHRbYzCc87MJ66Lt7_bxSP8y111WIA-1So"
             }
         }
     }
